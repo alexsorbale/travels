@@ -1,6 +1,6 @@
-#Общая за июль-август
+#ГЋГЎГ№Г Гї Г§Г  ГЁГѕГ«Гј-Г ГўГЈГіГ±ГІ
 
-flights <- read.csv("C:/Users/alexs/Desktop/Путешествия Р/flights.csv", sep=';', stringsAsFactors = FALSE)
+flights <- read.csv("C:/Users/alexs/Desktop/ГЏГіГІГҐГёГҐГ±ГІГўГЁГї Гђ/flights.csv", sep=';', stringsAsFactors = FALSE)
 
 library(maps)
 library(ggplot2)
@@ -25,7 +25,7 @@ Russia_summer
 ggsave("flights_map.png", dpi = 300)
 
 
-#Камчатка:2-11 июля
+#ГЉГ Г¬Г·Г ГІГЄГ :2-11 ГЁГѕГ«Гї
  
 library(rgdal) 
 library(maptools)
@@ -34,8 +34,8 @@ library(mapproj)
 library(sp)
 library(ggrepel)
 
-Russia<-readRDS("C:/Users/alexs/Desktop/Путешествия Р/gadm36_RUS_3_sp.rds") 
-Kamchatka <- subset(Russia, NL_NAME_1 == "Камчатская край") 
+Russia<-readRDS("C:/Users/alexs/Desktop/ГЏГіГІГҐГёГҐГ±ГІГўГЁГї Гђ/gadm36_RUS_3_sp.rds") 
+Kamchatka <- subset(Russia, NL_NAME_1 == "ГЉГ Г¬Г·Г ГІГ±ГЄГ Гї ГЄГ°Г Г©") 
 
 Kamchatka_df <- fortify(Kamchatka, region = "NAME_2")
 ggplot() + geom_map(data = Kamchatka_df, 
@@ -51,7 +51,7 @@ ggplot() + geom_map(data = Kamchatka_df,
         axis.title.y = element_blank()
   )
 
-Kamchatka@data$Days <- c('не был', 'не был', '2-9 июля', 'не был', 'не был', 'не был', 'не был', 'не был', 'не был', 'не был', '10 июля') 
+Kamchatka@data$Days <- c('Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', '2-9 ГЁГѕГ«Гї', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', 'Г­ГҐ ГЎГ»Г«', '10 ГЁГѕГ«Гї') 
 Kamchatka_to_map <- as.data.frame(Kamchatka@data) 
 
 ggplot() + geom_map(data = Kamchatka_to_map,
@@ -84,7 +84,7 @@ groups <- Kamchatka_to_map %>%
   unique() %>% 
   length()
 colors2 <- rep(c("aquamarine1", "slategray1", "#efede1"), length.out = groups)
-Kamchatka_to_map$Days <- factor(Kamchatka_to_map$Days, levels = c("2-9 июля", "10 июля", "не был"))
+Kamchatka_to_map$Days <- factor(Kamchatka_to_map$Days, levels = c("2-9 ГЁГѕГ«Гї", "10 ГЁГѕГ«Гї", "Г­ГҐ ГЎГ»Г«"))
 
 Kamchatka_final<-ggplot() + geom_map(data = Kamchatka_to_map,
                     aes(map_id = NAME_2, fill = Days),
@@ -106,11 +106,11 @@ Kamchatka_final<-ggplot() + geom_map(data = Kamchatka_to_map,
     panel.border = element_blank(),
     panel.background = element_blank()
   )+
-  scale_fill_manual(name = "Дни", values = colors2)
+  scale_fill_manual(name = "Г„Г­ГЁ", values = colors2)
 
 Kamchatka_final
 
-kamchatka_places <- read.csv("C:/Users/alexs/Desktop/Путешествия Р/Kamchatka.csv", sep=';', stringsAsFactors = FALSE)
+kamchatka_places <- read.csv("C:/Users/alexs/Desktop/ГЏГіГІГҐГёГҐГ±ГІГўГЁГї Гђ/Kamchatka.csv", sep=';', stringsAsFactors = FALSE)
 Kamchatka_to_map[4, 2] = 160.00
 
 attach(kamchatka_places)
@@ -121,8 +121,8 @@ kamchatka_places_1 = cbind(kamchatka_places,group)
 
 Kamchatka_points<-Kamchatka_final+geom_point(data=kamchatka_places_1, aes(x = lon, y = lat, shape=group, color=group))+
 geom_text_repel(data=kamchatka_places, aes(x = lon, y = lat, label = place), col = "#211906", size = 2.3, segment.color = NA)+
-scale_shape_manual(name = "Обозначения", values = c(16, 17, 8), labels = c("Населённые пункты", "Вулканы", "Заповедники и парки"))+
-scale_color_manual(name = "Обозначения", values = c('red', '#970027', 'darkgreen'), labels = c("Населённые пункты", "Вулканы", "Заповедники и парки"))
+scale_shape_manual(name = "ГЋГЎГ®Г§Г­Г Г·ГҐГ­ГЁГї", values = c(16, 17, 8), labels = c("ГЌГ Г±ГҐГ«ВёГ­Г­Г»ГҐ ГЇГіГ­ГЄГІГ»", "Г‚ГіГ«ГЄГ Г­Г»", "Г‡Г ГЇГ®ГўГҐГ¤Г­ГЁГЄГЁ ГЁ ГЇГ Г°ГЄГЁ"))+
+scale_color_manual(name = "ГЋГЎГ®Г§Г­Г Г·ГҐГ­ГЁГї", values = c('red', '#970027', 'darkgreen'), labels = c("ГЌГ Г±ГҐГ«ВёГ­Г­Г»ГҐ ГЇГіГ­ГЄГІГ»", "Г‚ГіГ«ГЄГ Г­Г»", "Г‡Г ГЇГ®ГўГҐГ¤Г­ГЁГЄГЁ ГЁ ГЇГ Г°ГЄГЁ"))
 Kamchatka_points
 
 ggsave("Kamchatka_map.png", width = 9, height = 8, dpi = 350, units = "in", device='png')
