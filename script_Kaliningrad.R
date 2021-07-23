@@ -1,5 +1,5 @@
-Russia<-readRDS("C:/Users/alexs/Desktop/Ïóòåøåñòâèÿ Ð/gadm36_RUS_3_sp.rds") 
-Kaliningrad <- subset(Russia, NL_NAME_1 == "Êàëèíèíãðàäñêàÿ îáëàñòü") 
+Russia<-readRDS("C:/Users/alexs/Desktop/ÃÃ³Ã²Ã¥Ã¸Ã¥Ã±Ã²Ã¢Ã¨Ã¿ Ã/gadm36_RUS_3_sp.rds") 
+Kaliningrad <- subset(Russia, NL_NAME_1 == "ÃŠÃ Ã«Ã¨Ã­Ã¨Ã­Ã£Ã°Ã Ã¤Ã±ÃªÃ Ã¿ Ã®Ã¡Ã«Ã Ã±Ã²Ã¼") 
 
 Kaliningrad_df <- fortify(Kaliningrad, region = "NAME_2")
 ggplot() + geom_map(data = Kaliningrad_df, 
@@ -15,7 +15,7 @@ ggplot() + geom_map(data = Kaliningrad_df,
         axis.title.y = element_blank()
   )
 
-Kaliningrad@data$Days <- c('íå áûë', 'íå áûë', 'íå áûë', '16-21 èþëÿ', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë', 'íå áûë','íå áûë','18-19 èþëÿ') 
+Kaliningrad@data$Days <- c('Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', '16-21 Ã¨Ã¾Ã«Ã¿', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«', 'Ã­Ã¥ Ã¡Ã»Ã«','Ã­Ã¥ Ã¡Ã»Ã«','18-19 Ã¨Ã¾Ã«Ã¿') 
 Kaliningrad_to_map <- as.data.frame(Kaliningrad@data) 
 
 ggplot() + geom_map(data = Kaliningrad_to_map,
@@ -46,7 +46,7 @@ groups <- Kaliningrad_to_map %>%
   unique() %>% 
   length()
 colors2 <- rep(c("aquamarine1", "slategray1", "#efede1"), length.out = groups)
-Kaliningrad_to_map$Days <- factor(Kaliningrad_to_map$Days, levels = c("16-21 èþëÿ", "18-19 èþëÿ", "íå áûë"))
+Kaliningrad_to_map$Days <- factor(Kaliningrad_to_map$Days, levels = c("16-21 Ã¨Ã¾Ã«Ã¿", "18-19 Ã¨Ã¾Ã«Ã¿", "Ã­Ã¥ Ã¡Ã»Ã«"))
 
 Kaliningrad_final<-ggplot() + geom_map(data = Kaliningrad_to_map,
                                        aes(map_id = NAME_2, fill = Days),
@@ -68,12 +68,12 @@ Kaliningrad_final<-ggplot() + geom_map(data = Kaliningrad_to_map,
     panel.border = element_blank(),
     panel.background = element_blank()
   )+
-  scale_fill_manual(name = "Äíè", values = colors2)
+  scale_fill_manual(name = "Ã„Ã­Ã¨", values = colors2)
 
 
 Kaliningrad_final
 
-kaliningrad_places <- read.csv("C:/Users/alexs/Desktop/Ïóòåøåñòâèÿ Ð/Kaliningrad.csv", sep=';', stringsAsFactors = FALSE)
+kaliningrad_places <- read.csv("C:/Users/alexs/Desktop/ÃÃ³Ã²Ã¥Ã¸Ã¥Ã±Ã²Ã¢Ã¨Ã¿ Ã/Kaliningrad.csv", sep=';', stringsAsFactors = FALSE)
 
 attach(kaliningrad_places)
 
@@ -83,8 +83,8 @@ kaliningrad_places_1 = cbind(kaliningrad_places,group)
 
 Kaliningrad_points<-Kaliningrad_final+geom_point(data=kaliningrad_places_1, aes(x = lon, y = lat, shape=group, color=group))+
   geom_text_repel(data=kaliningrad_places, aes(x = lon, y = lat, label = place), col = "#211906", size = 2.3, segment.color = NA)+
-  scale_shape_manual(name = "Îáîçíà÷åíèÿ", values = c(8, 16, 10), labels = c("Çàïîâåäíèêè è ïàðêè","Íàñåë¸ííûå ïóíêòû", "Óêðåïëåíèÿ"))+
-  scale_color_manual(name = "Îáîçíà÷åíèÿ", values = c('darkgreen', '#970027', 'black'), labels = c("Çàïîâåäíèêè è ïàðêè","Íàñåë¸ííûå ïóíêòû", "Óêðåïëåíèÿ"))
+  scale_shape_manual(name = "ÃŽÃ¡Ã®Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¿", values = c(8, 16, 10), labels = c("Ã‡Ã Ã¯Ã®Ã¢Ã¥Ã¤Ã­Ã¨ÃªÃ¨ Ã¨ Ã¯Ã Ã°ÃªÃ¨","ÃÃ Ã±Ã¥Ã«Â¸Ã­Ã­Ã»Ã¥ Ã¯Ã³Ã­ÃªÃ²Ã»", "Ã“ÃªÃ°Ã¥Ã¯Ã«Ã¥Ã­Ã¨Ã¿"))+
+  scale_color_manual(name = "ÃŽÃ¡Ã®Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¿", values = c('darkgreen', '#970027', 'black'), labels = c("Ã‡Ã Ã¯Ã®Ã¢Ã¥Ã¤Ã­Ã¨ÃªÃ¨ Ã¨ Ã¯Ã Ã°ÃªÃ¨","ÃÃ Ã±Ã¥Ã«Â¸Ã­Ã­Ã»Ã¥ Ã¯Ã³Ã­ÃªÃ²Ã»", "Ã“ÃªÃ°Ã¥Ã¯Ã«Ã¥Ã­Ã¨Ã¿"))
 Kaliningrad_points
 
 ggsave("Kaliningrad_map.png", width = 9, height = 8, dpi = 350, units = "in", device='png')
